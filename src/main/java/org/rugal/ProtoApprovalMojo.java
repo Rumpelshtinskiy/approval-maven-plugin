@@ -42,7 +42,7 @@ public class ProtoApprovalMojo extends AbstractMojo
     private MavenProject project;
     @Parameter(property = "start_directory_path")
     private String startDirectoryPath = ""; //Default project path
-    @Parameter(property = "src_test_resources_fixtures", defaultValue = "src/test/resources/fixtures") //Default path for saving fixtures
+    @Parameter(property = "src_test_resources_fixtures", defaultValue = "/src/test/resources/fixtures") //Default path for saving fixtures
     private String srcTestResourcesFixtures;
     @Parameter(property = "filter_file_extension", defaultValue = ".proto") //Default filter file extension
     private String filterFileExtension;
