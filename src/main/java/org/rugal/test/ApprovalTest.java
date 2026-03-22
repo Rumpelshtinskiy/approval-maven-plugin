@@ -38,12 +38,13 @@ public class ApprovalTest {
         return Stream.of(prjPath)
                 .flatMap(ApprovalTest::walkToDirectory)
                 .filter(Objects::nonNull)
-                .map(path -> Pair.of(path.toFile().getName(), path.toFile()))
+//                .map(path -> Pair.of(path, path.toFile()))
+                .map(path -> Pair.of(path, path.toFile()))
                 .filter(pair -> pair.getRight().isFile())
                 .filter(pair -> protoFileFilter(pair.getRight()))
                 .map(pair -> Pair.of(pair.getLeft(), fileInputStream(pair.getRight())))
                 .map(pair -> Pair.of(pair.getLeft(), read(pair.getRight())))
-                .map(pair -> Arguments.of(pair.getLeft(), pair.getRight()));
+                .map(pair -> Arguments.of(getName(pair.getLeft()), pair.getRight()));
     }
 
     static Stream<Path> walkToDirectory(File file) {
@@ -77,5 +78,31 @@ public class ApprovalTest {
             throw new RuntimeException(e);
         }
         return resultStringBuilder.toString();
+    }
+
+    static  String getName(Path file) {
+//        int nameCount = file.getNameCount();
+//        StringBuilder stringBuilder = new StringBuilder();
+//        if(nameCount > 3) {
+//            for (int i = nameCount - 3; i < nameCount; i++) {
+//                stringBuilder.append("_");
+//                stringBuilder.append(file.getName(i));
+//            }
+//            return stringBuilder.toString();
+//        }
+//        else {
+//            return file.toFile().getName();
+//        }
+        int nameCount = file.getNameCount();
+        String string = new String("");
+        if(nameCount > 3) {
+            for (int i = nameCount - 3; i < nameCount; i++) {
+                string = string + "_" + file.getName(i);
+            }
+            return string;
+        }
+        else {
+            return file.toFile().getName();
+        }
     }
 }
