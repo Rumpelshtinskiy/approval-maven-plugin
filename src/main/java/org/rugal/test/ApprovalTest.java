@@ -81,28 +81,28 @@ public class ApprovalTest {
     }
 
     static  String getName(Path file) {
-        int nameCount = file.getNameCount();
-        StringBuilder stringBuilder = new StringBuilder();
-        if(nameCount > 3) {
-            for (int i = nameCount - 3; i < nameCount; i++) {
-                stringBuilder.append("_");
-                stringBuilder.append(file.getName(i));
-            }
-            return stringBuilder.toString();
-        }
-        else {
-            return file.toFile().getName();
-        }
 //        int nameCount = file.getNameCount();
-//        String string = new String("");
+//        StringBuilder stringBuilder = new StringBuilder();
 //        if(nameCount > 3) {
 //            for (int i = nameCount - 3; i < nameCount; i++) {
-//                string = string + "_" + file.getName(i);
+//                stringBuilder.append("_");
+//                stringBuilder.append(file.getName(i));
 //            }
-//            return string;
+//            return stringBuilder.toString();
 //        }
 //        else {
 //            return file.toFile().getName();
 //        }
+        int nameCount = file.getNameCount();
+        String string = new String("");
+        if(nameCount > 3) {
+            for (int i = nameCount - 3; i < nameCount; i++) {
+                string = string + "_" + file.getName(i);
+            }
+            return string;
+        }
+        else {
+            return file.toFile().getName();
+        }
     }
 }
